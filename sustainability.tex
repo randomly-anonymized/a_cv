@@ -1,0 +1,386 @@
+%!TEX program = pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Resume tailored for: Researcher (contract), Equal Routes
+%   Sustainability research: maritime shipping, oceans and marine biodiversity
+%   https://www.goodwork.ca/jobs/sustainability-research-jobs-maritime-shipping-oceans-and-marine-biodiversity-76707
+%
+% Build:  pdflatex sustainability.tex   (run twice for the "page x of y" footer)
+%
+% This file is self-contained and compiles with pdfLaTeX on TeX Live 2026.
+% It does not use awesome-cv.cls, fontawesome.sty or fonts/, which require
+% XeLaTeX. It keeps the Awesome-CV look (Roboto header, Source Sans body,
+% emerald accent) and the same entry macros (\cvsection, \cventry, \cved,
+% \cvitems, \cvskill), so content can be copied to and from resume/*.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, letterpaper]{article}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Fonts: pdfLaTeX (Type 1) versions of the Awesome-CV fonts
+\usepackage[T1]{fontenc}
+\usepackage[default, lf]{sourcesans}
+\usepackage{roboto}  % used for the header only; does not change the default font
+\usepackage{fontawesome5}
+
+%%% Layout
+\usepackage[left=1.7cm, right=1.7cm, top=1.3cm, bottom=1.6cm, footskip=0.6cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{needspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Sonia Rego - Resume},
+  pdfauthor={Sonia Rego},
+  pdfsubject={Researcher application - Equal Routes}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\JustifyingParindent}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Colors (as in awesome-cv.cls)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{awesome}{HTML}{00A388}  % awesome-emerald, as in resume.tex
+\definecolor{darktext}{HTML}{414141}
+\definecolor{text}{HTML}{333333}
+\definecolor{graytext}{HTML}{5D5D5D}
+\definecolor{lighttext}{HTML}{999999}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\headerfont}{\fontfamily{Roboto-LF}\selectfont}
+\newcommand*{\lightseries}{\fontseries{l}\selectfont}
+
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{30pt}{1em}\headerfont\fontseries{thin}\selectfont\color{graytext}#1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{30pt}{1em}\headerfont\bfseries\color{text}#1}}
+\newcommand*{\headerpositionstyle}[1]{{\fontsize{9pt}{1em}\selectfont\scshape\color{awesome}#1}}
+\newcommand*{\headeraddressstyle}[1]{{\fontsize{8.5pt}{1em}\headerfont\itshape\color{lighttext}#1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{text}#1}}
+\newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\selectfont\scshape\color{lighttext}#1}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{15pt}{1em}\selectfont\bfseries\color{text}#1}}
+
+\newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\selectfont\bfseries\color{darktext}#1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{8.5pt}{1em}\selectfont\scshape\color{graytext}#1}}
+\newcommand*{\entrydatestyle}[1]{{\fontsize{8.5pt}{1em}\selectfont\lightseries\slshape\color{graytext}#1}}
+\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\selectfont\lightseries\slshape\color{awesome}#1}}
+\newcommand*{\descriptionstyle}{\fontsize{9pt}{11pt}\selectfont\lightseries\color{text}}
+
+\newcommand*{\skilltypestyle}[1]{{\fontsize{9pt}{11pt}\selectfont\bfseries\color{darktext}#1}}
+\newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{11pt}\selectfont\lightseries\color{text}#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     CV elements (same interface as awesome-cv.cls)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors the first three letters of a section title
+\newcommand*{\sectioncolor}[3]{{\color{awesome}#1#2#3}}
+
+% Usage: \cvsection{<section-title>}
+\newcommand{\cvsection}[1]{%
+  \par\addvspace{1.8ex}%
+  \needspace{4\baselineskip}%
+  \noindent\sectionstyle{\sectioncolor#1}\hspace{0.8ex}%
+  {\color{graytext}\leaders\hrule height 0.9pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{0.4ex}%
+}
+
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\newcommand{\cventry}[5]{%
+  \par\addvspace{0.9ex}%
+  \needspace{3\baselineskip}%
+  \noindent\entrytitlestyle{#2}\hfill\entrylocationstyle{#3}\par\nobreak
+  \noindent\entrypositionstyle{#1}\hfill\entrydatestyle{#4}\par\nobreak
+  #5\par
+}
+
+% Usage: \cved{<degree>}{<institution>}{<location>}{<date>}
+% One line per qualification to save space
+\newcommand{\cved}[4]{%
+  \par\addvspace{0.5ex}%
+  \noindent\entrytitlestyle{#1}\entrypositionstyle{\cvsep #2}%
+  \hfill\entrylocationstyle{#3}\enspace\entrydatestyle{#4}\par
+}
+
+% Bulleted description for \cventry
+\newenvironment{cvitems}{%
+  \par\nobreak\vspace{0.2ex}%
+  \descriptionstyle\justifying
+  \begin{itemize}[leftmargin=2ex, label={\textbullet}, nosep, beginpenalty=10000]%
+}{%
+  \end{itemize}%
+}
+
+% Usage: \begin{cvskills} \cvskill{<type>}{<skillset>} ... \end{cvskills}
+\newenvironment{cvskills}{%
+  \par\noindent
+  \tabularx{\linewidth}{@{}>{\raggedleft\arraybackslash}p{3.4cm}@{\hspace{1.5ex}}>{\raggedright\arraybackslash}X@{}}%
+}{%
+  \endtabularx\par
+}
+\newcommand*{\cvskill}[2]{\skilltypestyle{#1} & \skillsetstyle{#2} \\[0.3ex]}
+
+% Separator for small-caps lines (the centered dot has no small-caps shape)
+\newcommand*{\cvsep}{{\upshape\ \textperiodcentered\ }}
+
+% Usage: \doi{<doi>}
+\newcommand*{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Footer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footerstyle{Sonia Rego\cvsep Resume}}
+\fancyfoot[R]{\footerstyle{Page \thepage{} of \pageref*{LastPage}}}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+  \headerfirstnamestyle{Sonia} \headerlastnamestyle{Rego} \\[1.5mm]
+  \headerpositionstyle{Researcher\cvsep Policy \& Regulatory Analysis\cvsep Environment, Climate \& Equity} \\[0.8mm]
+  \headeraddressstyle{Montreal, QC, Canada} \\[0.4mm]
+  \headersocialstyle{%
+    \faMobile*~263-382-7234%
+    \quad\textbar\quad
+    \href{mailto:sonia1rego@yahoo.com}{\faEnvelope~sonia1rego@yahoo.com}%
+    \quad\textbar\quad
+    \href{https://soniarego.github.io}{\faHome~soniarego.github.io}%
+  }
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Profile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-2ex}
+\cvsection{Profile}
+{\descriptionstyle\justifying
+Researcher with 3.5 years as a Research Fellow at the London School of Hygiene \& Tropical Medicine and eight publications, including peer-reviewed papers, a book chapter and policy commentary. Experienced in distilling complex technical, regulatory and survey evidence---from a multi-country comparison of regulatory standards to a survey of 669 professionals in 64 countries---into rigorous, evidence-based writing for technical and lay audiences. Brings an equity- and community-centred approach from work with communities in Cambodia, Ghana and Kazakhstan, plus environmental experience in wildlife licensing at NatureScot, volunteer ranger work and training in conservation and climate change. Eager to apply these skills to the social, climate and biodiversity impacts of maritime shipping.
+\par}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Core skills
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Core Skills}
+\begin{cvskills}
+  \cvskill
+    {Policy \& regulatory analysis}
+    {Reviewing and synthesizing dense technical, policy and regulatory documents; comparative analysis of regulatory standards across countries; summarizing public consultations; wildlife licensing casework.}
+  \cvskill
+    {Research methods}
+    {Qualitative interviews and thematic analysis (NVivo); cross-sectional surveys and quantitative analysis; randomized controlled trial support; community-based participatory research; fieldwork management.}
+  \cvskill
+    {Writing \& communication}
+    {Peer-reviewed articles, book chapter, policy commentary and reports; published nature writing for general readers; research dissemination and methods training; stakeholder and network engagement.}
+  \cvskill
+    {Subject knowledge}
+    {Climate change and environmental awareness; biodiversity conservation and wildlife management; One Health and antimicrobial resistance; health equity in low- and middle-income countries.}
+  \cvskill
+    {Tools}
+    {MS Excel, Power BI, Airtable, NVivo, Microsoft Office, ERDMS.}
+  \cvskill
+    {Languages}
+    {English, French (B1), Kazakh (B2), Uzbek (B1).}
+\end{cvskills}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Research & policy experience
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Research \& Policy Experience}
+
+\cventry
+  {London School of Hygiene \& Tropical Medicine (LSHTM)}
+  {Global Health and Development Research Fellow}
+  {London, UK}
+  {Mar 2018 -- Aug 2021}
+  {
+    \begin{cvitems}
+      \item Researched antimicrobial resistance (AMR) in the private informal health sector in low- and middle-income countries (LMICs), synthesizing field data and published evidence into peer-reviewed papers, a book chapter and policy commentary.
+      \item Contributed to a multi-country comparative analysis of the regulations that set standards for physician training and licensing (\textit{Human Resources for Health}, 2021).
+      \item Joint first author of a paper reporting a survey of 669 health professionals in 64 LMICs on mitigating COVID-19 disruption to tuberculosis and HIV services (\textit{PLoS ONE}, 2021).
+      \item Managed and oversaw fieldwork for a two-year AMR study in Cambodia on informal providers' prescribing practices; conducted qualitative analysis of interviews and quantitative analysis of survey data.
+      \item Helped build a network of researchers across Asia and Africa and strengthen collaboration across human and animal health (One Health); co-organized dissemination with research partners and delivered training in qualitative research methods.
+    \end{cvitems}
+  }
+
+\cventry
+  {NatureScot (Scottish Government)}
+  {Licensing Support Officer, Wildlife Management Team}
+  {Scotland, UK}
+  {Jul 2023 -- Oct 2024}
+  {
+    \begin{cvitems}
+      \item Reviewed wildlife licence applications and liaised with applicants and service users, gaining first-hand insight into how wildlife protection legislation is administered by a public regulator.
+      \item Collated and managed licensing data using MS Excel, Power BI, ERDMS, Notify and NatureScot's internal licensing databases; supported team meetings.
+    \end{cvitems}
+  }
+
+\cventry
+  {Healthwatch City of London}
+  {Health Communications Coordinator}
+  {London, UK}
+  {Aug 2017 -- Mar 2018}
+  {
+    \begin{cvitems}
+      \item Collected, analyzed and summarized public consultations and reports on local health and care services, and managed Healthwatch City of London's social media.
+    \end{cvitems}
+  }
+
+\cventry
+  {George Warren Brown School of Social Work, Washington University in St.~Louis}
+  {Research Assistant}
+  {St.~Louis, Missouri, USA}
+  {Oct 2013 -- Aug 2014}
+  {
+    \begin{cvitems}
+      \item Supported a randomized controlled trial of sustainable, improved cookstoves in rural India, examining the health effects of this household-energy intervention on communities, especially women and children.
+    \end{cvitems}
+  }
+
+\cventry
+  {Washington University School of Medicine, Division of Public Health Sciences}
+  {Research Assistant}
+  {St.~Louis, Missouri, USA}
+  {May 2013 -- Oct 2013}
+  {
+    \begin{cvitems}
+      \item Surveyed outpatients and administered health-literacy assessments for a study of racial health disparities in St.~Louis; assisted a longitudinal course in community-based participatory research.
+    \end{cvitems}
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Education
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Education}
+
+\cved
+  {Master of Public Health (Service Corps Alumni Award)}
+  {Washington University in St.~Louis}
+  {St.~Louis, MO, USA}
+  {2014}
+
+\cved
+  {B.A. Psychology (Full Academic Award)}
+  {University of Texas at Dallas}
+  {Dallas, TX, USA}
+  {2010}
+
+\cved
+  {Level 3 Environmental Conservation and Countryside Management}
+  {Capel Manor College}
+  {London, UK}
+  {2022}
+
+\cved
+  {Level 2 Certificate in Understanding Climate Change and Environmental Awareness}
+  {NCFE}
+  {}
+  {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Publications & writing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Publications \& Writing}
+\begin{cvitems}
+  \item Gautham M, Miller R, \textbf{Rego S}, et al. Availability, prices and affordability of antibiotics stocked by informal providers in rural India: a cross-sectional survey. \textit{Antibiotics}. 2022. \doi{10.3390/antibiotics11040523}
+  \item Aftab W, Khan M, \textbf{Rego S}, et al. Variations in regulations to control standards for training and licensing of physicians: a multi-country comparison. \textit{Human Resources for Health}. 2021;19:91. \doi{10.1186/s12960-021-00629-5}
+  \item Khan MS*, \textbf{Rego S}*, Rajal JB, et al. Mitigating the impact of COVID-19 on tuberculosis and HIV services: a cross-sectional survey of 669 health professionals in 64 low and middle-income countries. \textit{PLoS ONE}. 2021;16(2):e0244936. \doi{10.1371/journal.pone.0244936} (*joint first authors)
+  \item Khan MS, Bory S, \textbf{Rego S}, et al. Is enhancing the professionalism of healthcare providers critical to tackling antimicrobial resistance in low- and middle-income countries? \textit{Human Resources for Health}. 2020;18:10. \doi{10.1186/s12960-020-0452-7}
+  \item Suy S, \textbf{Rego S}, Bory S, et al. Invisible medicine sellers and their use of antibiotics: a qualitative study in Cambodia. \textit{BMJ Global Health}. 2019;4(5):e001787. \doi{10.1136/bmjgh-2019-001787}
+  \item Khan MS, \textbf{Rego S}, Wu S, et al. Health systems barriers to controlling infectious diseases in low and middle income Asian countries. In: Legido-Quigley H, Asgari-Jirhandeh N (eds). \textit{Resilient and People-Centred Health Systems: Progress, Challenges and Future Directions in Asia}. 2018. (Book chapter)
+  \item Khan MS, \textbf{Rego S}, Spencer J. Prescription only access to antibiotics could exacerbate health inequalities in LMICs. \textit{The BMJ Opinion} (commentary). 2018.
+  \item Khan MS, \textbf{Rego S}. Patient-centredness versus achieving public health targets: a challenge for tuberculosis control. \textit{Social Science \& Medicine} (commentary). 2018;212:179--80.
+  \item Nature writing for general readers in \textit{Where the Leaves Fall}:
+    \href{https://wheretheleavesfall.com/stories/with-my-hands-in-the-soil}{\textbf{With My Hands in the Soil}} (Issue 4),
+    \href{https://wheretheleavesfall.com/stories/without-vultures}{\textbf{Without Vultures}} (Issue 9),
+    \href{https://wheretheleavesfall.com/explore/pictures/saving-seed/}{\textbf{Saving Seed}} (Issue 10) and
+    \href{https://wheretheleavesfall.com/stories/karl-and-nora}{\textbf{Karl and Nora}} (Issue 15);
+    and \href{https://dgtrails.org/southern-upland-way-the-preamble/}{\textbf{Southern Upland Way: The Preamble}} (dgtrails.org).
+\end{cvitems}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Program & community experience
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Program \& Community Experience}
+
+\cventry
+  {OmVed Gardens}
+  {Seed Saving Network and Education Programme Manager}
+  {London, UK}
+  {Feb 2020 -- Sep 2023}
+  {
+    \begin{cvitems}
+      \item Managed the Seed Saving Network, a UK-wide network of 300+ growers saving open-pollinated seed, overseeing member coordination, data management and external stakeholder communications.
+      \item Managed the OmVed Education Programme, developing outdoor-education workshops for urban public schools; grew food crops and saved seed in the kitchen garden.
+    \end{cvitems}
+  }
+
+\cventry
+  {Ghana Health and Education Initiative}
+  {Health Program Coordinator}
+  {Humjibre, Ghana}
+  {Mar 2016 -- Aug 2016}
+  {
+    \begin{cvitems}
+      \item Coordinated all health programs for a community-based health and education organization in Ghana's Western Region, working with local staff and community partners to implement, monitor and evaluate programs, including a longitudinal maternal and child health program.
+      \item Planned and facilitated health evaluation and outreach projects delivered by short-term volunteer groups.
+    \end{cvitems}
+  }
+
+\cventry
+  {International Institute of St.~Louis}
+  {Refugee Coordinator}
+  {St.~Louis, Missouri, USA}
+  {Aug 2014 -- May 2015}
+  {
+    \begin{cvitems}
+      \item Helped refugee clients establish primary care providers and coordinated immunizations for adults and children.
+    \end{cvitems}
+  }
+
+\cventry
+  {United States Peace Corps}
+  {Peace Corps Education Volunteer}
+  {Kazakhstan}
+  {Aug 2010 -- Nov 2011}
+  {
+    \begin{cvitems}
+      \item Planned and team-taught English classes with Kazakhstani colleagues for grades 5--11, and a weekly English course for adults.
+    \end{cvitems}
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Conservation volunteering & other experience
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Conservation Volunteering \& Other Experience}
+\begin{cvitems}
+  \item \textbf{Volunteer Ranger}, Southern Upland Way Ranger Service, Galloway, UK (Aug 2022 -- Dec 2024): weekly trail maintenance, including cutting back overgrowth, signposting and drainage projects.
+  \item \textbf{Volunteer Ranger}, Lee Valley Regional Park, London, UK (Feb 2022 -- May 2022): worked with the ranger service to remove invasive plants, monitor wildlife and conduct water-quality tests.
+  \item \textbf{Food Grower}: Assistant Food Grower, Living Under One Sun, London (2017); volunteer at OrganicLea workers' cooperative farm, London (2017; Level 1 Award in Work Based Horticulture) and EarthDance Farms, St.~Louis (2013 -- 2015).
+  \item \textbf{Behavioural Dog Walker}, West Island Cats and Dogs, Montreal (May 2025 -- present): force-free, positive, science-based methods.
+\end{cvitems}
+
+\end{document}
