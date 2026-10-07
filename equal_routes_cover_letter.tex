@@ -1,0 +1,144 @@
+%!TEX program = pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cover letter for: Researcher (Contract), Equal Routes
+%   https://www.goodwork.ca/jobs/sustainability-research-jobs-maritime-shipping-oceans-and-marine-biodiversity-76707
+%   Companion to sustainability.tex (same fonts, colors and header).
+%
+% Build:  pdflatex equal_routes_cover_letter.tex
+%
+% The posting asks for the resume and cover letter in one file (4 pages max),
+% plus a research sample, sent to research@equalroutes.ca with the subject
+% "Researcher Application" by 11:59pm on 16 October 2026.
+%
+% This file is self-contained and compiles with pdfLaTeX on TeX Live 2026.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, letterpaper]{article}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Fonts: pdfLaTeX (Type 1) versions of the Awesome-CV fonts
+\usepackage[T1]{fontenc}
+\usepackage[default, lf]{sourcesans}
+\usepackage{roboto}  % used for the header only; does not change the default font
+\usepackage{fontawesome5}
+
+%%% Layout
+\usepackage[left=2.0cm, right=2.0cm, top=1.3cm, bottom=1.6cm, footskip=0.6cm]{geometry}
+\usepackage{xcolor}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Sonia Rego - Cover Letter},
+  pdfauthor={Sonia Rego},
+  pdfsubject={Researcher application - Equal Routes}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\JustifyingParindent}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Colors (as in sustainability.tex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{awesome}{HTML}{00A388}  % awesome-emerald
+\definecolor{darktext}{HTML}{414141}
+\definecolor{text}{HTML}{333333}
+\definecolor{graytext}{HTML}{5D5D5D}
+\definecolor{lighttext}{HTML}{999999}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\headerfont}{\fontfamily{Roboto-LF}\selectfont}
+\newcommand*{\lightseries}{\fontseries{l}\selectfont}
+
+% Header (as in sustainability.tex)
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{30pt}{1em}\headerfont\fontseries{thin}\selectfont\color{graytext}#1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{30pt}{1em}\headerfont\bfseries\color{text}#1}}
+\newcommand*{\headerpositionstyle}[1]{{\fontsize{9pt}{1em}\selectfont\scshape\color{awesome}#1}}
+\newcommand*{\headeraddressstyle}[1]{{\fontsize{8.5pt}{1em}\headerfont\itshape\color{lighttext}#1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{text}#1}}
+\newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\selectfont\scshape\color{lighttext}#1}}
+
+% Letter (as in awesome-cv.cls)
+\newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\selectfont\bfseries\color{darktext}#1}}
+\newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\selectfont\scshape\color{graytext}#1}}
+\newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\selectfont\lightseries\slshape\color{graytext}#1}}
+\newcommand*{\lettertitlestyle}[1]{{\fontsize{10.5pt}{1em}\selectfont\bfseries\color{darktext}#1}}
+\newcommand*{\lettertextstyle}{\fontsize{10.5pt}{14pt}\selectfont\lightseries\color{text}}
+\newcommand*{\letternamestyle}[1]{{\fontsize{10.5pt}{1em}\selectfont\bfseries\color{darktext}#1}}
+
+% Separator for small-caps lines (the centered dot has no small-caps shape)
+\newcommand*{\cvsep}{{\upshape\ \textperiodcentered\ }}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Footer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footerstyle{Sonia Rego\cvsep Cover Letter}}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+  \headerfirstnamestyle{Sonia} \headerlastnamestyle{Rego} \\[1.5mm]
+  \headerpositionstyle{Researcher\cvsep Policy \& Regulatory Analysis\cvsep Environment, Climate \& Equity} \\[0.8mm]
+  \headeraddressstyle{Montreal, QC, Canada} \\[0.4mm]
+  \headersocialstyle{%
+    \faMobile*~263-382-7234%
+    \quad\textbar\quad
+    \href{mailto:sonia1rego@yahoo.com}{\faEnvelope~sonia1rego@yahoo.com}%
+    \quad\textbar\quad
+    \href{https://soniarego.github.io}{\faHome~soniarego.github.io}%
+  }
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Recipient, date and subject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{3mm}
+\recipienttitlestyle{Hiring Team, Equal Routes}\hfill\letterdatestyle{\today}\par
+\vspace{1mm}
+\recipientaddressstyle{\href{mailto:research@equalroutes.ca}{\upshape research@equalroutes.ca}}\par
+\vspace{5mm}
+\lettertitlestyle{Re: Researcher Application (Contract)}\par
+\vspace{4mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Letter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\lettertextstyle\justifying\setlength{\parskip}{0.75em}
+
+Dear Equal Routes Hiring Team,
+
+I am writing to apply for the Researcher (Contract) position, which I saw advertised on GoodWork.ca. Equal Routes' work toward a decarbonized shipping industry grounded in human rights, ocean health and climate equity, and its commitment to centring communities and Rightsholders, reflects the values that have shaped my career across global health research, environmental regulation and conservation. I would bring 3.5 years of research and analysis experience from the London School of Hygiene \& Tropical Medicine (LSHTM), strong writing skills, and a deep commitment to inclusion, equity and justice.
+
+At LSHTM, my core work was turning complex evidence into publication-quality analysis. I contributed to a multi-country comparison of the regulations governing physician training and licensing, work that, like the analysis of IMO documents at the heart of this role, depends on reading regulatory texts closely and comparing how rules differ across jurisdictions. I was joint first author of a survey of 669 health professionals in 64 low- and middle-income countries, and I managed fieldwork for a two-year study in Cambodia, carrying out both the qualitative analysis of interviews and the quantitative analysis of survey data. Across eight co-authored publications, from peer-reviewed articles to commentary in \textit{The BMJ}, I have written for technical and general audiences, and working within large international author teams has taught me to edit carefully and check claims against sources.
+
+My research has consistently focused on social and economic impacts on the people with the least power, from the prices and affordability of antibiotics sold by informal providers in rural India to the disruption COVID-19 caused to tuberculosis and HIV services. I have increasingly brought this lens to the environment. At NatureScot, Scotland's nature agency, I reviewed wildlife licence applications within a statutory licensing system; as a volunteer ranger I monitored wildlife, removed invasive plants and carried out water-quality testing; and I hold qualifications in environmental conservation and climate change. Maritime shipping would be a new sector for me, but my move from public health into wildlife regulation shows that I learn new technical and regulatory fields quickly, and I am eager to apply my skills to the social, climate and biodiversity impacts of shipping fuels, practices and regulations.
+
+I also bring experience engaging across sectors and communicating with varied audiences. I helped build a research network across Asia and Africa, co-organized dissemination with partners and delivered methods training. At OmVed Gardens I managed two programs in parallel, a UK-wide network of 300+ growers and a schools education program, balancing stakeholder communications, data and competing deadlines; at Healthwatch City of London I summarized public consultations and managed social media. Working alongside communities in Ghana and Kazakhstan taught me that good policy must reflect the needs and perspectives of the people most affected. I am based in Montreal, used to collaborating remotely across time zones, and able to travel within Canada and internationally.
+
+Thank you for considering my application. My resume follows this letter, and I have included a sample of my previous research. I would welcome the opportunity to discuss how I could contribute to Equal Routes' research and advocacy.
+
+Sincerely,
+
+\par}
+
+\vspace{1mm}
+\letternamestyle{Sonia Rego}
+
+\end{document}
