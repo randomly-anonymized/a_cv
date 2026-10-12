@@ -46,6 +46,8 @@
 \setlength{\JustifyingParindent}{0pt}
 \setlength{\RaggedRightParindent}{0pt}
 \frenchspacing  % no extra space after periods, e.g. in "et al."
+\widowpenalty=10000  % never leave one line of a bullet alone on a page
+\clubpenalty=10000
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,24 +104,35 @@
 % "(continued)" line in its header (see Footer below)
 \NewMarkClass{cventry}
 
+% Usage: \cvifempty{<text>}{<if empty>}{<otherwise>}
+\newcommand{\cvifempty}[3]{\if\relax\detokenize{#1}\relax #2\else #3\fi}
+
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 % The date is on the first line, right-aligned, so employment dates line up.
 % Long entries may break between bullets; the heading lines never separate.
+% With empty <position> and <title> (as in resume/academic_publications.tex)
+% only the description is printed.
+% The marks sit inside text lines (the title line and the last bullet), so a
+% page break can never separate them from the entry they belong to.
 \newcommand{\cventry}[5]{%
   \par\addvspace{2.2ex plus 0.8ex}%
-  \InsertMark{cventry}{#2\cvsep #1}%
-  \noindent\entrytitlestyle{#2}\hfill\entrydatestyle{#4}\par\nobreak
-  \vspace{0.3ex}%
-  \noindent\entrypositionstyle{#1}\hfill\entrylocationstyle{#3}\par\nobreak
+  \cvifempty{#1#2}{}{%
+    \noindent\InsertMark{cventry}{#2\cvifempty{#1}{}{\cvsep #1}}%
+    \entrytitlestyle{#2}\hfill\entrydatestyle{#4}\par\nobreak
+    \vspace{0.3ex}%
+    \noindent\entrypositionstyle{#1}\hfill\entrylocationstyle{#3}\par\nobreak
+  }%
   #5\par
-  \InsertMark{cventry}{}%
+  \InsertMark{cventry}{}%  fallback for entries without bullets
 }
 
 % Usage: \cvshortentry{<position>}{<title>}{<location>}{<date>}{<description>}
 % Same as \cventry with the organization and location on the title line
 \newcommand{\cvshortentry}[5]{%
   \par\addvspace{1.8ex plus 0.6ex}%
-  \noindent\entrytitlestyle{#2}\entrypositionstyle{\cvsep #1}\entrylocationstyle{\cvsep #3}%
+  \noindent\entrytitlestyle{#2}%
+  \cvifempty{#1}{}{\entrypositionstyle{\cvsep #1}}%
+  \cvifempty{#3}{}{\entrylocationstyle{\cvsep #3}}%
   \hfill\entrydatestyle{#4}\par\nobreak
   #5\par
 }
@@ -128,8 +141,9 @@
 % One line per qualification
 \newcommand{\cved}[4]{%
   \par\addvspace{1.2ex plus 0.4ex}%
-  \noindent\entrytitlestyle{#1}\entrypositionstyle{\cvsep #2}%
-  \if\relax\detokenize{#3}\relax\else\entrylocationstyle{\cvsep #3}\fi
+  \noindent\entrytitlestyle{#1}%
+  \cvifempty{#2}{}{\entrypositionstyle{\cvsep #2}}%
+  \cvifempty{#3}{}{\entrylocationstyle{\cvsep #3}}%
   \hfill\entrydatestyle{#4}\par
 }
 
@@ -139,6 +153,7 @@
   \descriptionstyle\justifying
   \begin{itemize}[leftmargin=2ex, label={\textbullet}, nosep, itemsep=3pt plus 1pt, beginpenalty=10000]%
 }{%
+  \ifhmode\unskip\InsertMark{cventry}{}\fi  % ends the entry with the last bullet
   \end{itemize}%
 }
 
@@ -161,10 +176,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Header & footer
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Prints "<title> · <organization> (continued)" when a page starts mid-entry
+% Prints "<title> · <organization>, continued" when a page starts mid-entry
 \newcommand*{\cvcontinued}{%
   \edef\cvtopmark{\TopMark{cventry}}%
-  \ifx\cvtopmark\empty\else\footerstyle{\cvtopmark\ (continued)}\fi
+  \ifx\cvtopmark\empty\else
+    {\fontsize{8pt}{1em}\selectfont\scshape\color{graytext}\cvtopmark, continued}%
+  \fi
 }
 
 \pagestyle{fancy}
@@ -209,7 +226,7 @@ Researcher with 3.5 years at the London School of Hygiene \& Tropical Medicine a
 \cvsection{Core Skills}
 \begin{cvskills}
   \cvskill
-    {Policy \& regulatory analysis}
+    {Policy \&\newline regulatory analysis}
     {Synthesis of complex technical and regulatory documents, cross-country comparison of regulatory standards, summaries of public consultations, wildlife licensing casework}
   \cvskill
     {Research methods}
